@@ -7,6 +7,12 @@ class Board extends React.Component{
         super(props);
 
     }
+
+    
+    componentDidMount(){
+        this.Draw();
+    }
+
     Draw(){
         var canvas = document.querySelector('#board');
         var ctx = canvas.getContext('2d');
