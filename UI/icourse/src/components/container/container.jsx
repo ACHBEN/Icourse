@@ -8,9 +8,11 @@ class Container extends React.Component{
 
         this.state = {
             color: "#000000",
-            size: "5"
+            size: "5",
+
         }
     }
+
 
     changeColor(params){
         this.setState({

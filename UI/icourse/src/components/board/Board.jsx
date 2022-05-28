@@ -7,26 +7,36 @@ const socket = io.connect("http://localhost:5000");
 class Board extends React.Component{
 
     
-    
+    ctx;
+    isDrawing = false;
     constructor(props){
 
         super(props);
         
     
 
-        socket.on("canvas-data", function(data){
-            var image = new Image();
-            var canvas= document.querySelector("#board");
-            var ctx = canvas.getContext('2d');
-            image.onload = function(){
-                ctx.drawImage(image,0,0);
-            };
-            image.src = data;
+         socket.on("canvas-data", function(data){
+
+            var root = this;
+            var interval = setInterval(function(){
+                if(root.isDrawing) return;
+                root.isDrawing = true;
+                clearInterval(interval);
+                var image = new Image();
+                var canvas = document.querySelector('#board');
+                var ctx = canvas.getContext('2d');
+                image.onload = function() {
+                    ctx.drawImage(image, 0, 0);
+
+                    root.isDrawing = false;
+                };
+                image.src = data;
+            }, 200)
         })
 
     }
     timeout;
-    ctx;
+    
     
     componentDidMount(){
         
@@ -90,19 +100,30 @@ class Board extends React.Component{
             root.timeout = setTimeout(function(){
                 var imageData = canvas.toDataURL("image/png");
                 socket.emit("canvas-data", imageData)
-            }, 1000)
+            }, 500)
 
         };
     
     }
+    // setToErase(){
+    //     this.ctx.globalCompositeOperation = "destination-over";
+    // }
+
+    // setToDraw(){
+    //     this.ctx.globalCompositeOperation = "source-over";
+    // }
 
     render(){
-        
-        console.log("hello world");
         return(
             
-    
-            <div className="sketch" id="sketch"><canvas className="board" id="board"></canvas></div>
+            <div className="sketch" id="sketch">
+                <canvas className="board" id="board"></canvas>
+                {/* <div>
+                    <button onClick={ this.setToDraw }>draw</button>
+                    <button onClick={ this.setToErase }>Erase</button>
+
+                </div> */}
+            </div>
         )
     } 
 }
