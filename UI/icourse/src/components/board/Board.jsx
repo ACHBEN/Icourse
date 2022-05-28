@@ -1,17 +1,39 @@
 import React from "react";
 import "./style.css"
+import io from "socket.io-client"
+
+const socket = io.connect("http://localhost:5000");
 
 class Board extends React.Component{
+
+    
+    
     constructor(props){
 
         super(props);
+        
+    
 
+        socket.on("canvas-data", function(data){
+            var image = new Image();
+            var canvas= document.querySelector("#board");
+            var ctx = canvas.getContext('2d');
+            image.onload = function(){
+                ctx.drawImage(image,0,0);
+            };
+            image.src = data;
+        })
+
+    }
+    timeout;
+    
+    componentDidMount(){
+        
+        this.Draw();
+        
     }
 
     
-    componentDidMount(){
-        this.Draw();
-    }
 
     Draw(){
         var canvas = document.querySelector('#board');
@@ -48,6 +70,8 @@ class Board extends React.Component{
         canvas.addEventListener('mouseup', function() {
             canvas.removeEventListener('mousemove', onPaint, false);
         }, false);
+
+        var root = this;
     
         var onPaint = function() {
             ctx.beginPath();
@@ -55,13 +79,24 @@ class Board extends React.Component{
             ctx.lineTo(mouse.x, mouse.y);
             ctx.closePath();
             ctx.stroke();
+
+            if(root.timeout !== undefined) clearTimeout(root.timeout);
+            root.timeout = setTimeout(function(){
+                var imageData = canvas.toDataURL("image/png");
+                socket.emit("canvas-data", imageData)
+            }, 1000)
+
         };
     
     }
 
     render(){
+        
+        console.log("hello world");
         return(
-            <div class="sketch" id="sketch"><canvas className="board" id="board"></canvas></div>
+            
+    
+            <div className="sketch" id="sketch"><canvas className="board" id="board"></canvas></div>
         )
     } 
 }
