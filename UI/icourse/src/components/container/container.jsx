@@ -9,7 +9,6 @@ class Container extends React.Component{
         this.state = {
             color: "#000000",
             size: "5",
-
         }
     }
 
@@ -25,6 +24,8 @@ class Container extends React.Component{
             size: params.target.value
         })
     }
+
+
     render(){
         return(
             <div className="container">
@@ -45,6 +46,9 @@ class Container extends React.Component{
                             <option>30</option>
                         </select>
                     </div>
+                    {/* <div>
+                        <button id ="btn" onClick={this.erase}>clear</button>
+                    </div> */}
                     <div className="board-container">
                         <Board color ={this.state.color} size={this.state.size}></Board>
                     </div>

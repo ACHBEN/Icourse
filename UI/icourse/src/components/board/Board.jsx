@@ -105,6 +105,19 @@ class Board extends React.Component{
         };
     
     }
+    //SIFU
+    // erase(){
+    //     var canvas = document.getElementById("board")
+    //     var ctx = canvas.getContext('2d');
+       
+
+    //     var button = document.getElementById("btn")
+    //     button.addEventListener("click", function(e) {
+    //     ctx.clearRect(0,0,canvas.width, canvas.height)
+    //     });
+    // }
+
+    //PAKPAK
     // setToErase(){
     //     this.ctx.globalCompositeOperation = "destination-over";
     // }
