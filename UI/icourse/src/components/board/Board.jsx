@@ -15,7 +15,7 @@ class Board extends React.Component{
         
     
 
-         socket.on("canvas-data", function(data){
+        socket.on("canvas-data", function(data){
 
             var root = this;
             var interval = setInterval(function(){
@@ -105,37 +105,12 @@ class Board extends React.Component{
         };
     
     }
-    //SIFU
-    // erase(){
-    //     var canvas = document.getElementById("board")
-    //     var ctx = canvas.getContext('2d');
-       
-
-    //     var button = document.getElementById("btn")
-    //     button.addEventListener("click", function(e) {
-    //     ctx.clearRect(0,0,canvas.width, canvas.height)
-    //     });
-    // }
-
-    //PAKPAK
-    // setToErase(){
-    //     this.ctx.globalCompositeOperation = "destination-over";
-    // }
-
-    // setToDraw(){
-    //     this.ctx.globalCompositeOperation = "source-over";
-    // }
 
     render(){
         return(
             
             <div className="sketch" id="sketch">
                 <canvas className="board" id="board"></canvas>
-                {/* <div>
-                    <button onClick={ this.setToDraw }>draw</button>
-                    <button onClick={ this.setToErase }>Erase</button>
-
-                </div> */}
             </div>
         )
     } 

@@ -24,7 +24,21 @@ class Container extends React.Component{
             size: params.target.value
         })
     }
+    /*
+    //Pour effacer
+    erase(){
+        var c = document.getElementById("board");
+        var ctx = c.getContext("2d");
+        ctx.globalCompositeOperation = "destination-out";
 
+    }
+    // Pour redessiner après avoir effacer
+    draw(){
+        var c = document.getElementById("board");
+        var ctx = c.getContext("2d");
+        ctx.globalCompositeOperation = "source-over";
+    }
+    */
 
     render(){
         return(
@@ -47,7 +61,10 @@ class Container extends React.Component{
                         </select>
                     </div>
                     {/* <div>
-                        <button id ="btn" onClick={this.erase}>clear</button>
+                        <button id ="erase" onClick={this.erase}>clear</button>
+                    </div>
+                    <div>
+                        <button id ="draw" onClick={this.draw}>draw</button>
                     </div> */}
                     <div className="board-container">
                         <Board color ={this.state.color} size={this.state.size}></Board>
