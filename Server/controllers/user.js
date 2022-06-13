@@ -1,6 +1,18 @@
 const User = require('../models/user');
 const Classe = require('../models/classe')
 
+
+exports.ShowAll = function(req,res){
+    User.findAll({ attributes: ['Username', 'Password']} )
+    .then(data => {
+    res.json(data);
+    })
+    .catch(err => {
+    res.status(500).json({ message: err.message })
+    })
+}
+
+
 exports.Show = function(req,res){
     const id = parseInt(req.query.id)
     User.findOne({attributes:['UserName'], where:{id:id}, include: Classe})
@@ -71,7 +83,7 @@ exports.Login = async function(req, res) {
         return;
     }
 
-    classe.addUser(user);
+    // classe.addUser(user);
 
     res.status(200).json({ message: 'ROOM JOINED !', room: classe})
 

@@ -4,7 +4,7 @@ import axios from 'axios';
 
 export default function Signup() {
     const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('')
+    const [password, setPassword] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault()

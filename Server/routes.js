@@ -5,7 +5,8 @@ const Usercontrolleur = require('./controllers/user');
 const Classroomcontrolleur = require('./controllers/classe');
 
 router.post("/users",Usercontrolleur.Add); //ajouter un utilisateur
-router.get("/users", Usercontrolleur.Show); // trouver un utilisateur
+router.get("/users", Usercontrolleur.ShowAll); // afficher les utilisateurs
+router.get("/user", Usercontrolleur.Show); // trouver un utilisateur  (préciser id)
 router.post('/users/login', Usercontrolleur.Login) // login 
 
 router.post('/classes', Classroomcontrolleur.Add) // ajouter une classe

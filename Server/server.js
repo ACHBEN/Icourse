@@ -8,7 +8,6 @@ app.use(express.json())
 const server = http.createServer(app);
 const cors = require("cors");
 app.use(cors());
-const LinkClasseUser = require('./models/linkclasses_users.js')
 
 
 const routes = require('./routes')
