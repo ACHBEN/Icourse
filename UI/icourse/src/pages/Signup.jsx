@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
+import "./style.css"
+
 
 
 export default function Signup() {
@@ -22,11 +24,25 @@ export default function Signup() {
 
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input label="Username" placeholder="Jane Doe" onChange={e => setUsername(e.target.value)} />
-            <input label="Password" type="password" onChange={e => setPassword(e.target.value)} />
-            <input type="submit" label="Signup" />
-        </form>
+        <div className="Container">
+            <div class="formbg">
+                <div class="formbg-inner padding-horizontal--48">
+                    <span class="padding-bottom--15"><h2>Create an account</h2></span><br/>
+                    <form onSubmit={handleSubmit}>
+                        <div class="field padding-bottom--24">
+                            <input label="Username" placeholder="Jane Doe" onChange={e => setUsername(e.target.value)} />
+                        </div>
+                        <div class="field padding-bottom--24">
+                            <input label="Password" type="password" onChange={e => setPassword(e.target.value)} />
+                        </div>
+                        <div class="field padding-bottom--24">
+                            <input type="submit" label="Signup" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
         
     )
 }

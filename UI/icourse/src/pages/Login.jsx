@@ -1,6 +1,7 @@
 import { useState } from 'react' 
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import "./style.css"
 
 export default function Login(){
     const navigate = useNavigate()
@@ -25,12 +26,29 @@ export default function Login(){
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input placeholder="Username" onChange={e => setUsername(e.target.value)} />
-            <input label="password" type="password" onChange={e => setPassword(e.target.value)} />
-            <input placeholder="Code" onChange={e => setCode(e.target.value)} />
-            <input type="submit" label="Login" />
-        </form>
+
+
+        <div className='Container'>
+            <div class="formbg">
+                <div class="formbg-inner padding-horizontal--48">
+                    <span class="padding-bottom--15"><h2>Sign in to your account</h2></span><br/>
+                    <form onSubmit={handleSubmit}>
+                        <div class="field padding-bottom--24">
+                            <input label="Username" placeholder="Jane Doe" onChange={e => setUsername(e.target.value)} />
+                        </div>
+                        <div class="field padding-bottom--24">
+                            <input label="Password" type="password" onChange={e => setPassword(e.target.value)} />
+                        </div>
+                        <div class="field padding-bottom--24">
+                            <input placeholder="Code" onChange={e => setCode(e.target.value)} />
+                        </div>
+                        <div class="field padding-bottom--24">
+                            <input type="submit" label="Log In" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
             
     )
 }

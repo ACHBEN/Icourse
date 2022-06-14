@@ -43,6 +43,8 @@ class Container extends React.Component{
     render(){
         return(
             <div className="container">
+                <span class="title"><h1>My Classroom</h1></span>
+                <br></br>
                 <div className="tools">
                     <div className="color-container">
                         Select color : &nbsp;
